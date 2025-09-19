@@ -1,23 +1,32 @@
-// CSRF token olish funksiyasi
+// --------------------------BASE URL--------------------------
+const API_BASE = 'https://avtoexpert-production.up.railway.app/api/'; // HTTPS bilan
+
+// --------------------------CSRF token olish--------------------------
 function getCsrfToken() {
-    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const tokenEl = document.querySelector('[name=csrfmiddlewaretoken]');
+    return tokenEl ? tokenEl.value : '';
 }
 
 // --------------------------GET--------------------------
-export async function apiGet(url) {
-    const res = await fetch(url);
+export async function apiGet(endpoint) {
+    const url = `${API_BASE}${endpoint}`;
+    const res = await fetch(url, {
+        credentials: 'include' // CSRF cookie lar bilan ishlash uchun
+    });
     if (!res.ok) throw new Error(`Xatolik: ${res.status}`);
     return await res.json();
 }
 
 // --------------------------POST--------------------------
-export async function apiPost(url, data) {
+export async function apiPost(endpoint, data) {
+    const url = `${API_BASE}${endpoint}`;
     const res = await fetch(url, {
         method: "POST",
         headers: { 
             "Content-Type": "application/json",
-            "X-CSRFToken": getCsrfToken()  // CSRF token qo'shildi
+            "X-CSRFToken": getCsrfToken()
         },
+        credentials: 'include',
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error(`Xatolik: ${res.status}`);
@@ -25,13 +34,15 @@ export async function apiPost(url, data) {
 }
 
 // --------------------------PUT--------------------------
-export async function apiPut(url, data) {
+export async function apiPut(endpoint, data) {
+    const url = `${API_BASE}${endpoint}`;
     const res = await fetch(url, {
         method: "PUT",
         headers: { 
             "Content-Type": "application/json",
-            "X-CSRFToken": getCsrfToken()  // CSRF token qo'shildi
+            "X-CSRFToken": getCsrfToken()
         },
+        credentials: 'include',
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error(`Xatolik: ${res.status}`);
@@ -39,12 +50,12 @@ export async function apiPut(url, data) {
 }
 
 // --------------------------DELETE--------------------------
-export async function apiDelete(url) {
+export async function apiDelete(endpoint) {
+    const url = `${API_BASE}${endpoint}`;
     const res = await fetch(url, { 
         method: "DELETE",
-        headers: {
-            "X-CSRFToken": getCsrfToken()  // CSRF token qo'shildi
-        }
+        headers: { "X-CSRFToken": getCsrfToken() },
+        credentials: 'include'
     });
     if (!res.ok) throw new Error(`Xatolik: ${res.status}`);
     return true;
@@ -53,49 +64,38 @@ export async function apiDelete(url) {
 // --------------------------ALERT--------------------------
 export function showBootstrapAlert(message, type = 'danger') {
     const alertEl = document.getElementById('formAlert');
+    if (!alertEl) return;
     alertEl.textContent = message || `Iltimos ma'lumot kiriting`;
     alertEl.className = `alert alert-${type}`;
     alertEl.classList.remove('d-none');
-    setTimeout(() => {
-        alertEl.classList.add('d-none');
-    }, 1000);
+    setTimeout(() => alertEl.classList.add('d-none'), 2000);
 }
 
-// --------------------------CSRF-TOKEN--------------------------
-
-// 
+// --------------------------COOKIE/CSRF--------------------------
 export function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
+    const cookies = document.cookie.split(";").map(c => c.trim());
+    for (let cookie of cookies) {
+        if (cookie.startsWith(name + "=")) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
     }
-  }
-  return cookieValue;
+    return null;
 }
 
 export const csrftoken = getCookie("csrftoken");
 
 // --------------------------CALENDAR--------------------------
-
-export function makeCalendar(box, chosenYear, id){
+export function makeCalendar(box, chosenYear, id) {
     const select = document.createElement("select");
     select.className = `car-year-input-${id} form-select mb-3`;
-    select.setAttribute("required", "")
+    select.required = true;
+
     for (let year = 1940; year <= 2040; year++) {
-        let option = document.createElement('option');
+        const option = document.createElement('option');
         option.value = year;
-        if(year == chosenYear){
-            // option.setAttribut('selected', 'selected')
-            option.setAttribute('selected', 'selected')
-        }
         option.textContent = year;
-        select.appendChild(option)
+        if (year === chosenYear) option.selected = true;
+        select.appendChild(option);
     }
     box.appendChild(select);
 }
