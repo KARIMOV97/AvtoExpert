@@ -5,7 +5,7 @@ document.addEventListener("change", function (e) {
     // Containerni tozalash
     const container = document.querySelector('.ichki-detallar-accordion-body');
     container.innerHTML = '';
-    fetch(`https://avtoexpert-production.up.railway.app/api/ichki-detail-coefficient/?car_model_id=${window.carModelId}`)
+    fetch(`http://avtoexpert-production.up.railway.app/api/ichki-detail-coefficient/?car_model_id=${window.carModelId}`)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();

@@ -7,7 +7,7 @@ document.addEventListener("change", function (e) {
     const container = document.querySelector('.kuzov-yechib-ornatish-accordion-body');
     container.innerHTML = '';
 
-    fetch(`https://avtoexpert-production.up.railway.app/api/kuzov-detail-coefficient/?car_model_id=${carModelId}`)
+    fetch(`http://avtoexpert-production.up.railway.app/api/kuzov-detail-coefficient/?car_model_id=${carModelId}`)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();

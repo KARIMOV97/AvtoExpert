@@ -2,7 +2,7 @@
 const ul = document.querySelector(".yechilmaydigan-detallar-tamir-ul");
 
 // Birinchi fetch: Yechilmaydigan detallarni olish
-fetch("https://avtoexpert-production.up.railway.app/api/yechilmaydigan-detallar-tamir/")
+fetch("http://avtoexpert-production.up.railway.app/api/yechilmaydigan-detallar-tamir/")
   .then(response => response.json())
   .then(data => {
     ul.innerHTML = ""; // eski elementlarni tozalash
