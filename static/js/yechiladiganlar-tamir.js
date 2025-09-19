@@ -2,7 +2,7 @@
 const ul = document.querySelector(".yechiladigan-detallar-tamir-ul");
 
 // Birinchi fetch: Detallarni olish
-fetch("avtoexpert-production.up.railway.app/api/yechiladigan-detallar-tamirlash/")
+fetch("https://avtoexpert-production.up.railway.app/api/yechiladigan-detallar-tamirlash/")
   .then(response => response.json())
   .then(data => {
     ul.innerHTML = ""; // eski elementlarni tozalash
@@ -42,7 +42,7 @@ fetch("avtoexpert-production.up.railway.app/api/yechiladigan-detallar-tamirlash/
 
 
       // Endi ikkinchi fetch: Tamirlash darajasi yuklash
-      fetch("avtoexpert-production.up.railway.app/api/tamirlash-darajasi/")
+      fetch("https://avtoexpert-production.up.railway.app/api/tamirlash-darajasi/")
         .then(res => res.json())
         .then(darajalar => {
           select.innerHTML = ""; // eski optionlarni tozalash
