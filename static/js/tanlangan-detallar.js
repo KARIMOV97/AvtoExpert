@@ -31,7 +31,7 @@ document.querySelector('button[name="detallar-tasdiqlash"]').addEventListener("c
     list.innerHTML = ""; // eski elementlarni tozalash
 
     // Ichki elementlarini frontendga chiqarish
-    fetch(`http://avtoexpert-production.up.railway.app/api/ichki-detail-coefficient/?car_model_id=${carModelId}`)
+    fetch(`https://avtoexpert-production.up.railway.app/api/ichki-detail-coefficient/?car_model_id=${carModelId}`)
         .then(res => res.json())
         .then(data => {
             data.forEach(item => {
@@ -55,7 +55,7 @@ document.querySelector('button[name="detallar-tasdiqlash"]').addEventListener("c
                         <input class="number-of-items money flex-grow-1"" type="text" placeholder="Narxi">
                         <div class="trash-icon ms-auto">
                             <button class='btn' type='button'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z 
                                              M 5 7 L 5 22 L 19 22 L 19 7 L 5 7 z 
                                              M 8 9 L 10 9 L 10 20 L 8 20 L 8 9 z 
@@ -70,7 +70,7 @@ document.querySelector('button[name="detallar-tasdiqlash"]').addEventListener("c
         });
 
     // Kuzov elementlarini frontendga chiqarish
-    fetch(`http://avtoexpert-production.up.railway.app/api/kuzov-detail-coefficient/?car_model_id=${carModelId}`)
+    fetch(`https://avtoexpert-production.up.railway.app/api/kuzov-detail-coefficient/?car_model_id=${carModelId}`)
         .then(res => res.json())
         .then(data => {
             data.forEach(item => {
@@ -94,7 +94,7 @@ document.querySelector('button[name="detallar-tasdiqlash"]').addEventListener("c
                         <input class="number-of-items money flex-grow-1"" type="text" placeholder="Narxi">
                         <div class="trash-icon ms-auto">
                             <button class='btn' type='button'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z 
                                              M 5 7 L 5 22 L 19 22 L 19 7 L 5 7 z 
                                              M 8 9 L 10 9 L 10 20 L 8 20 L 8 9 z 
