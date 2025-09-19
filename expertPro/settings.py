@@ -120,7 +120,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, "static")]
+# Bu yerda faqat loyihaning local static fayllari katalogi
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# Bu yerga collectstatic fayllarini yig‘adi (deployment uchun)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
