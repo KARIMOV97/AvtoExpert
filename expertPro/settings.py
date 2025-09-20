@@ -7,7 +7,8 @@ SECRET_KEY = 'django-insecure-9@g!2tyua%xq@tzo3yx*tl*0)nk-y$=n4e@n!%+f-irq4*!k04
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["avtoexpert-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ['https://avtoexpert-production.up.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -87,5 +88,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
 }
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 CORS_ALLOW_ALL_ORIGINS = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024

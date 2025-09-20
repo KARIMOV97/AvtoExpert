@@ -34,7 +34,7 @@ fetch("https://avtoexpert-production.up.railway.app/api/yechilmaydigan-detallar-
       const select = li.querySelector(".tamirlash-darajasi-select");
 
       // Endi ikkinchi fetch: Tamirlash darajasi yuklash
-      fetch("httpss://avtoexpert-production.up.railway.app/api/tamirlash-darajasi/")
+      fetch("https://avtoexpert-production.up.railway.app/api/tamirlash-darajasi/")
         .then(res => res.json())
         .then(darajalar => {
           select.innerHTML = ""; // eski optionlarni tozalash
