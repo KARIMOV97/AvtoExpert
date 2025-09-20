@@ -4,13 +4,14 @@ const API = {}; // bu object ichida endpointlar bo‘ladi
 fetch("https://avtoexpert-production.up.railway.app/api")
   .then(res => res.json())
   .then(data => {
-    for (const [key, url] of Object.entries(data)) {
-    API[key] = {
-        get: () => apiGet(url),
-        create: (data) => apiPost(url, data),
-        update: (id, data) => apiPut(`${url}${id}/`, data),
-        delete: (id) => apiDelete(`${url}${id}/`)
-      }
+   for (const [key, url] of Object.entries(data)) {
+        const fixedUrl = url.replace("http://", "https://");
+        API[key] = {
+            get: () => apiGet(fixedUrl),
+            create: (data) => apiPost(fixedUrl, data),
+            update: (id, data) => apiPut(`${fixedUrl}${id}/`, data),
+            delete: (id) => apiDelete(`${fixedUrl}${id}/`)
+        }
     }
 // ---------------------------------------VARIABLES-----------------------------------------------------------------------
     const container = document.querySelector('#car-models-container');
