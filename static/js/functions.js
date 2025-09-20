@@ -9,7 +9,7 @@ function getCsrfToken() {
 
 // --------------------------GET--------------------------
 export async function apiGet(endpoint) {
-    const url = `${API_BASE}${endpoint}`;
+    const url = endpoint.startsWith("http") ? endpoint : `${API_BASE}${endpoint}`;
     const res = await fetch(url, {
         credentials: 'include' // CSRF cookie lar bilan ishlash uchun
     });
@@ -19,7 +19,7 @@ export async function apiGet(endpoint) {
 
 // --------------------------POST--------------------------
 export async function apiPost(endpoint, data) {
-    const url = `${API_BASE}${endpoint}`;
+    const url = endpoint.startsWith("http") ? endpoint : `${API_BASE}${endpoint}`;
     const res = await fetch(url, {
         method: "POST",
         headers: { 
@@ -35,7 +35,7 @@ export async function apiPost(endpoint, data) {
 
 // --------------------------PUT--------------------------
 export async function apiPut(endpoint, data) {
-    const url = `${API_BASE}${endpoint}`;
+    const url = endpoint.startsWith("http") ? endpoint : `${API_BASE}${endpoint}`;
     const res = await fetch(url, {
         method: "PUT",
         headers: { 
@@ -51,7 +51,7 @@ export async function apiPut(endpoint, data) {
 
 // --------------------------DELETE--------------------------
 export async function apiDelete(endpoint) {
-    const url = `${API_BASE}${endpoint}`;
+    const url = endpoint.startsWith("http") ? endpoint : `${API_BASE}${endpoint}`;
     const res = await fetch(url, { 
         method: "DELETE",
         headers: { "X-CSRFToken": getCsrfToken() },
