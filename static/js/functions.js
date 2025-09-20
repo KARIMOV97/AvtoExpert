@@ -1,5 +1,5 @@
 // --------------------------BASE URL--------------------------
-const API_BASE = 'https://avtoexpert-production.up.railway.app/api/'; // HTTPS bilan
+const API_BASE = 'http://avtoexpert-production.up.railway.app/api/'; // HTTPS bilan
 
 // --------------------------CSRF token olish--------------------------
 function getCsrfToken() {
