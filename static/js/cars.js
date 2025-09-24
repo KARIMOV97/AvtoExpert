@@ -399,7 +399,7 @@ document.querySelector('.finish-tasdiqlash').addEventListener('click', async (e)
         return arr.filter(f => f.startsWith(son))
     }
     let shablonlar = await getShablon()
-    let yilKichik = (xozirgiYil - carYear) >= 5
+    let yilKichik = (xozirgiYil - carYear) <= 5
     let odometrSozmi = document.querySelector('input[name="status"]:checked')?.value === "soz"
     let ishlabChiqarish = document.querySelector('input[name="production"]:checked')?.value === 'toxtamadi';
     let shablonNomi
