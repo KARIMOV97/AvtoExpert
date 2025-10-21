@@ -6,8 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9@g!2tyua%xq@tzo3yx*tl*0)nk-y$=n4e@n!%+f-irq4*!k04'
 
 DEBUG = True
-                # "127.0.0.1" o'chir ***********************************
-ALLOWED_HOSTS = ['192.168.43.63', "avtoexpert-production.up.railway.app"]
+ALLOWED_HOSTS = ["avtoexpert-production.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ['https://avtoexpert-production.up.railway.app']
 
 INSTALLED_APPS = [
@@ -72,13 +71,8 @@ USE_TZ = True
 
 # Static fayllar
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # collectstatic natijalari shu joyga yig‘iladi
-
-# Faqat lokal rejimda (DEBUG=True) ishlaydi:
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # local static katalogi (dev uchun)
-
-# WhiteNoise static fayllarni siqilgan va keshlangan holda xizmat qiladi
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # local static katalogi
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")    # collectstatic katalogi
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media fayllar
