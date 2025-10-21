@@ -6,8 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9@g!2tyua%xq@tzo3yx*tl*0)nk-y$=n4e@n!%+f-irq4*!k04'
 
 DEBUG = True
-
-ALLOWED_HOSTS = ["avtoexpert-production.up.railway.app"]
+                # "127.0.0.1" o'chir ***********************************
+ALLOWED_HOSTS = ['192.168.43.63', "avtoexpert-production.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ['https://avtoexpert-production.up.railway.app']
 
 INSTALLED_APPS = [
@@ -72,8 +72,13 @@ USE_TZ = True
 
 # Static fayllar
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # local static katalogi
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")    # collectstatic katalogi
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # collectstatic natijalari shu joyga yig‘iladi
+
+# Faqat lokal rejimda (DEBUG=True) ishlaydi:
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # local static katalogi (dev uchun)
+
+# WhiteNoise static fayllarni siqilgan va keshlangan holda xizmat qiladi
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media fayllar
@@ -89,8 +94,8 @@ REST_FRAMEWORK = {
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True  
 CORS_ALLOW_ALL_ORIGINS = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024
